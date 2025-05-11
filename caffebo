@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CaffeBo Sadakat Programı</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #f9f6f1;
+      color: #333;
+      text-align: center;
+      padding: 2rem;
+    }
+    .card {
+      background: white;
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      max-width: 400px;
+      margin: 2rem auto;
+    }
+    input[type="tel"] {
+      padding: 0.8rem;
+      font-size: 1rem;
+      width: 100%;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+    }
+    button {
+      background: #6f4e37;
+      color: white;
+      border: none;
+      padding: 0.8rem 2rem;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    #result {
+      margin-top: 2rem;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>CaffeBo Sadakat Puanı Sorgula</h2>
+    <p>Telefon numaranızı girin, puan durumunuzu öğrenin:</p>
+    <input type="tel" id="phone" placeholder="05xx xxx xx xx" />
+    <button onclick="checkPoints()">Puanları Göster</button>
+    <div id="result"></div>
+  </div>
+
+  <script>
+    // Demo veri
+    const userPoints = {
+      "05321234567": 12.5,
+      "05439876543": 4,
+      "05001239876": 17,
+    };
+
+    function checkPoints() {
+      const phone = document.getElementById("phone").value;
+      const result = document.getElementById("result");
+      if (userPoints[phone]) {
+        const point = userPoints[phone];
+        const freeCoffees = Math.floor(point / 15);
+        const remaining = point % 15;
+        result.innerHTML = `Puanınız: ${point} <br> Ücretsiz kahve hakkı: ${freeCoffees} <br> Sonraki hediye için kalan puan: ${15 - remaining}`;
+      } else {
+        result.innerHTML = "Bu numara için kayıtlı puan bulunamadı.";
+      }
+    }
+  </script>
+</body>
+</html>
